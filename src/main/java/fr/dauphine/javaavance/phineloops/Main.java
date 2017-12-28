@@ -9,6 +9,8 @@ import org.apache.commons.cli.Option.Builder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import fr.dauphine.javaavance.phineloops.model.Grid;
+
 public class Main {
     private static String inputFile= null;  
     private static String outputFile= null;
@@ -60,6 +62,11 @@ public class Main {
             boolean solved = false; 
         
             // load grid from inputFile, solve it and store result to outputFile...
+            try {
+				Grid grid = new Grid(inputFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
             // ...
             
             System.out.println("SOLVED: " + solved);            
