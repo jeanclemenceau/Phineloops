@@ -64,6 +64,7 @@ public class Main {
             // load grid from inputFile, solve it and store result to outputFile...
             try {
 				Grid grid = new Grid(inputFile);
+				grid.store(outputFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

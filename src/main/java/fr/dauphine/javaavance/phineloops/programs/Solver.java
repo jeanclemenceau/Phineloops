@@ -22,7 +22,7 @@ public class Solver {
 	public void initStack(){
 		for (Piece piece : grid.getPieces())
 			for(int i = 0; i<piece.getOrientationMax(); i++)
-				stack.push(new Piece(piece.getPieceNumber(), i));
+				stack.push(new Piece(piece.getNum(), i));
 	}
 	
 	

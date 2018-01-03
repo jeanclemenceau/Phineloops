@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Piece {
+	private int num;
+	private int orientation;
 	private int orientationMax;
-	private int pieceNumber;
-	private int pieceOrientation;
 	private int nbConnections;
 	private boolean fixed = false;
 	private int x, y;
@@ -23,15 +23,15 @@ public class Piece {
 	}
 	
 	public Piece(int num, int orientation) {
-		pieceNumber = num;
-		pieceOrientation = orientation;
+		this.num = num;
+		this.orientation = orientation;
 		orientationMax = correspondence.get(num)[0];
 		nbConnections = correspondence.get(num)[1];
 	}
 	
 	public Piece(int num, int orientation, int x, int y) {
-		pieceNumber = num;
-		pieceOrientation = orientation;
+		this.num = num;
+		this.orientation = orientation;
 		orientationMax = correspondence.get(num)[0];
 		nbConnections = correspondence.get(num)[1];
 		this.x = x;
@@ -42,22 +42,30 @@ public class Piece {
 	 * Pivot the piece by 90° (clockwise) 
 	 */
 	public void pivot() {
-		pieceOrientation = (pieceOrientation+1) % (orientationMax+1);
+		if(!fixed) 
+			orientation = (orientation+1) % (orientationMax+1);
+		else
+			System.out.println("This piece is fixed. It can't rotate.");
 	}
 
 	public int getOrientationMax() {
 		return orientationMax;
 	}
 
-	public int getPieceOrientation() {
-		return pieceOrientation;
+	public int getOrientation() {
+		return orientation;
 	}
 
 	public int getNbConnections() {
 		return nbConnections;
 	}
 
-	public int getPieceNumber() {
-		return pieceNumber;
+	public int getNum() {
+		return num;
+	}
+
+	@Override
+	public String toString() {
+		return "Piece [num=" + num + ", orientation=" + orientation + "]";
 	}
 }
