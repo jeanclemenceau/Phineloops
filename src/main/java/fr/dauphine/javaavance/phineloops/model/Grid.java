@@ -51,7 +51,7 @@ public class Grid {
 		File f = new File(fileName);
 		try {
 			FileWriter writer = new FileWriter(f);
-			String ls = System.getProperty("line.separator");
+			String ls = System.lineSeparator();
 			StringBuilder builder = new StringBuilder(width + ls + height);
 			
 			for (Piece piece : pieces) 
@@ -62,6 +62,13 @@ public class Grid {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	public void print() {
+		for (Piece piece : pieces) {
+			System.out.print(piece.toUnicode());
+			if(piece.getX() == width-1) System.out.println();
+		}
 	}
 
 	public List<Piece> getPieces() {
