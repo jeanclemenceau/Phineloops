@@ -8,12 +8,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.HashMap;
 
 public class Grid {
 	private int width;
 	private int height;
 	private Piece[][] pieces;
+	
+	public Grid(int width, int height) {
+		this.width = width;
+		this.height = height;
+		pieces = new Piece[width][height];
+	}
 	
 	public Grid(String fileName) throws Exception {
 		File f = new File(fileName);
@@ -114,7 +121,25 @@ public class Grid {
 				if(pieces[j][i].getX() == width-1) System.out.println();
 			}
 		}
+	}
+	
+	/***
+	 * Shuffle all pieces in the grid
+	 */
+	public void shuffle() {
+		Random randomizer = new Random();
+		Piece p;
+		int rotations;
 		
+		for(int i = 0; i < height; i++)
+			for(int j = 0; j < width; j++) {
+				p = pieces[j][i];
+				if(p.getNum() != 0 && p.getNum() != 4) {
+					rotations = randomizer.nextInt(4);
+					for(int k = 0; k < rotations; k++)
+						p.pivot();
+				}
+			}
 	}
 
 	public Piece[][] getPieces() {
