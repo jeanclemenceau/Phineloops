@@ -106,4 +106,8 @@ public enum PieceProperties {
 		}
 	}
 	
+	public static int getNumMax() {
+		return 5;
+	}
+	
 }
