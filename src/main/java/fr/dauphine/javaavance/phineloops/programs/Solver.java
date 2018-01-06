@@ -12,18 +12,18 @@ public class Solver {
 	
 	public Solver(Grid grid) {
 		this.grid = grid;
-		initStack();
+//		initStack();
 	}
 	
 	/***
 	 * Initialize the stack with all positions for each piece of the grid
 	 * @param grid
 	 */
-	public void initStack(){
-		for (Piece piece : grid.getPieces())
-			for(int i = 0; i<piece.getOrientationMax(); i++)
-				stack.push(new Piece(piece.getNum(), i));
-	}
+//	public void initStack(){
+//		for (Piece piece : grid.getPieces())
+//			for(int i = 0; i<piece.getOrientationMax(); i++)
+//				stack.push(new Piece(piece.getNum(), i));
+//	}
 	
 	
 }
