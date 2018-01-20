@@ -10,6 +10,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import fr.dauphine.javaavance.phineloops.model.Grid;
+import fr.dauphine.javaavance.phineloops.programs.Generator;
 
 public class Main {
     private static String inputFile= null;  
@@ -50,7 +51,8 @@ public class Main {
             height = Integer.parseInt(gridformat[1]); 
             if(! cmd.hasOption("o")) throw new ParseException("Missing mandatory --output argument.");
             outputFile = cmd.getOptionValue( "o" );
-
+            Grid grid = Generator.generateGrid(width, height);
+            grid.print();
             // generate grid and store it to outputFile...
             //...            
         }
