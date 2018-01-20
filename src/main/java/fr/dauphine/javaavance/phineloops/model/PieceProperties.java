@@ -11,15 +11,15 @@ public enum PieceProperties {
 	_3(3,3),
 	_4(0,4),
 	_5(3,2);
-	
+
 	private final int orientationMax;
 	private final int nbConnections;
-	
+
 	PieceProperties(int orientationMax, int nbConnections) {
 		this.orientationMax = orientationMax;
 		this.nbConnections = nbConnections;
 	}
-	
+
 	public int getOrientationMax() {
 		return orientationMax;
 	}
@@ -27,7 +27,7 @@ public enum PieceProperties {
 	public int getNbConnections() {
 		return nbConnections;
 	}
-	
+
 	public static String getUnicode(int num, int orientation) {
 		switch (num) {
 		case 0:
@@ -56,39 +56,44 @@ public enum PieceProperties {
 			return "\u000F";
 		}
 	}
-	
+
 	/***
 	 * Fetch connections available for each cardinal point for a piece depending of its orientation
 	 * @param num
 	 * @param orientation
-	 * @return an array of integers which contains number of connections for a cardinal point. 
+	 * @return an array of integers which contains number of connections for a cardinal point.
 	 * Index 0 is for the North, index 1 is for the East, index 2 is for the South, index 3 is for the West
 	 */
 	public static int[] getLinksOnCardinalPoints(int num, int orientation) {
 		int[] links = new int[4];
 		switch(num) {
-		case 0: 
+		case 0:
 			break;
 		case 1:
 			if(orientation == 0) links[0] = 1;
 			if(orientation == 1) links[1] = 1;
 			if(orientation == 2) links[2] = 1;
 			if(orientation == 3) links[3] = 1;
+			break;
 		case 2:
 			if(orientation == 0) {links[0] = 1; links[2] = 1;}
 			if(orientation == 1) {links[1] = 1; links[3] = 1;}
+			break;
 		case 3:
 			if(orientation == 0) {links[0] = 1; links[1] = 1; links[3] = 1;}
 			if(orientation == 1) {links[0] = 1; links[1] = 1; links[2] = 1;}
 			if(orientation == 2) {links[1] = 1; links[2] = 1; links[3] = 1;}
 			if(orientation == 3) {links[0] = 1; links[2] = 1; links[3] = 1;}
+			break;
 		case 4:
-			{links[1] = 1; links[2] = 1; links[3] = 1; links[4] = 1;}
+			{links[0] = 1; links[1] = 1; links[2] = 1; links[3] = 1;}
+			break;
 		case 5:
 			if(orientation == 0) {links[0] = 1; links[1] = 1;}
 			if(orientation == 1) {links[1] = 1; links[2] = 1;}
 			if(orientation == 2) {links[2] = 1; links[3] = 1;}
 			if(orientation == 3) {links[3] = 1; links[0] = 1;}
+			break;
 		default:
 		}
 		return links;
@@ -105,9 +110,9 @@ public enum PieceProperties {
 		default: return null;
 		}
 	}
-	
+
 	public static int getNumMax() {
 		return 5;
 	}
-	
+
 }
