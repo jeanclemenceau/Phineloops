@@ -19,21 +19,70 @@ public class Generator {
 		Grid g = new Grid(width, height);
 		Piece[][] pieces = g.getPieces();
 		Random randomizer = new Random();
-		Set<Integer> allowedValues;
-		Integer[] values;
+		Set<Piece> possiblePieces;
+		Piece[] values;
 
 		for(int i = 0; i < height; i++)
 			for(int j = 0; j < width; j++) {
-				allowedValues = getAllowedValues(j, i, width, height);
-				values = allowedValues.toArray(new Integer[allowedValues.size()]);
-				// TODO
-				// retirer des possibilités les pieces en fonction des pieces deja générées
-				pieces[j][i] = new Piece(values[randomizer.nextInt(values.length)], 0, j, i);
+				possiblePieces = getPossiblePieces(j, i, width, height, g);
+				values = possiblePieces.toArray(new Piece[possiblePieces.size()] );
+				pieces[j][i] = values[randomizer.nextInt(values.length)];
 			}
 
-		g.shuffle();
+		//g.shuffle();
 
 		return g;
+	}
+
+
+	/***
+	 * Method that indicates the possible pieces for a case of the grid
+	 * @param  int  x             abscissa
+	 * @param  int  y             ordinate
+	 * @param  int  width         width of the grid
+	 * @param  int  height        height of the grid
+	 * @param  Grid g             the grid
+	 * @return      a set of possible pieces
+	 */
+	private static Set<Piece> getPossiblePieces(int x, int y, int width, int height, Grid g){
+		Set<Integer> allowedValues = getAllowedValues(x, y, width, height);
+		Set<Piece> possiblePieces = new HashSet<Piece>();
+		Piece up;
+		Piece left;
+		if(x != 0)
+			left = g.getPieces()[x-1][y];
+		else
+			left = new Piece(0,0);
+		if(y != 0)
+			up = g.getPieces()[x][y-1];
+		else
+			up = new Piece(0,0);
+
+
+		int nbCoUp = PieceProperties.getLinksOnCardinalPoints(up.getNum(),up.getOrientation())[2];
+		int nbCoLeft = PieceProperties.getLinksOnCardinalPoints(left.getNum(),left.getOrientation())[1];
+		int[] links;
+
+		for(Integer i : allowedValues){
+			for(int j = 0; j<=new Piece(i,0).getOrientationMax(); j++){
+				links = PieceProperties.getLinksOnCardinalPoints(i,j);
+				if(links[0] == nbCoUp && links[3] == nbCoLeft){
+					//for pieces not on the right nor down edges of the grid
+					if(x<width-1 && y < height-1)
+						possiblePieces.add(new Piece(i,j,x,y));
+
+					//for pieces on the down edge of the grid except the bottom right piece
+					else if(y == height-1 && links[2] == 0 && x!= width-1)
+						possiblePieces.add(new Piece(i,j,x,y));
+
+					//for pieces on the right edge of the grid
+					else if(x == width-1 && links[1]==0 && (y != height-1 || links[2] == 0))
+						possiblePieces.add(new Piece(i,j,x,y));
+				}
+			}
+		}
+		return possiblePieces;
+
 	}
 
 	/***
