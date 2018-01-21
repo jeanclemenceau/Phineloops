@@ -1,9 +1,6 @@
 package fr.dauphine.javaavance.phineloops.programs;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -12,6 +9,12 @@ import fr.dauphine.javaavance.phineloops.model.Piece;
 import fr.dauphine.javaavance.phineloops.model.PieceProperties;
 
 public class Generator {
+	/***
+	 * Generate a random grid
+	 * @param width width of the requested grid
+	 * @param height height of the requested grid
+	 * @return a solvable random grid
+	 */
 	public static Grid generateGrid(int width, int height) {
 		Grid g = new Grid(width, height);
 		Piece[][] pieces = g.getPieces();
@@ -33,7 +36,16 @@ public class Generator {
 		return g;
 	}
 
-	public static Set<Integer> getAllowedValues(int x, int y, int width, int height){
+	/***
+	 * Get piece numbers, for a position, which are acceptable for making a solvable grid.
+	 * This method does not take care of other pieces already put on the grid.
+	 * @param x abscissa
+	 * @param y ordinate
+	 * @param width width of the grid
+	 * @param height height of the grid
+	 * @return Set of piece numbers for a piece position on the grid
+	 */
+	private static Set<Integer> getAllowedValues(int x, int y, int width, int height){
 		Set<Integer> allowedValues = new HashSet<>();
 		int[] connectionsOnCardinalPoints;
 		boolean toRemove = true;
