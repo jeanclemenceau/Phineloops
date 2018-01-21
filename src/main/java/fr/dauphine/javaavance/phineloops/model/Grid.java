@@ -22,6 +22,11 @@ public class Grid {
 		pieces = new Piece[width][height];
 	}
 
+	/***
+	 * Construct a new Grid from a file which respect the accurate format
+	 * @param fileName
+	 * @throws Exception
+	 */
 	public Grid(String fileName) throws Exception {
 		File f = new File(fileName);
 		try {
@@ -56,6 +61,10 @@ public class Grid {
 		}
 	}
 
+	/***
+	 * Stores the grid in a flat file, respect the accurate format
+	 * @param fileName
+	 */
 	public void store(String fileName) {
 		File f = new File(fileName);
 		try {
@@ -74,8 +83,12 @@ public class Grid {
 			e.printStackTrace();
 		}
 	}
-
-	//neighbours[]: 0 north, 1 east, 2 south, 3 west
+	
+	/***
+	 * Retrieves neighbours (adjacent pieces) for a piece
+	 * @param p the piece for which we want to know its neighbours
+	 * @return an array of Piece with index : 0 -> north, 1 -> east, 2 -> south, 3 -> west
+	 */
 	public Piece[] getPieceNeighbours(Piece p) {
 		int x = p.getX();
 		int y = p.getY();
@@ -104,6 +117,10 @@ public class Grid {
 		return neighbours;
 	}
 
+	/***
+	 * Retrieves the neighbours for each piece of the grid
+	 * @return a map with each key is a piece and corresponding value is its neighbours
+	 */
 	public HashMap<Piece, Piece[]> getAllNeighbours(){
 		HashMap<Piece,Piece[]> allNeighbours = new HashMap<Piece, Piece[]>();
 		for(int i=0; i<height; i++) {
@@ -114,6 +131,9 @@ public class Grid {
 		return allNeighbours;
 	}
 
+	/***
+	 * Prints the grid in Unicode
+	 */
 	public void print() {
 		for(int i= 0; i< height; i++) {
 			for(int j=0; j<width; j++) {
