@@ -5,16 +5,11 @@ import fr.dauphine.javaavance.phineloops.model.Piece;
 import fr.dauphine.javaavance.phineloops.model.PieceProperties;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class Checker {
 
-	private Grid grid;
-	
-	public Checker(Grid g) {
-		this.grid = g;
-	}
-	
-	public boolean check() {
+	public static boolean check(Grid grid) {
 		int[] connections;
 		List<Piece> checked = new ArrayList<Piece>();
 		Piece p;
@@ -33,7 +28,7 @@ public class Checker {
 							return false;
 						else if(!checked.contains(currentN)) {
 							neighbourLinks = PieceProperties.getLinksOnCardinalPoints(currentN.getNum(), currentN.getOrientation());
-							if(neighbourLinks[(k+2)%4]==0)
+							if(neighbourLinks[(k+2)%4]!=connections[k])
 								return false;
 						}
 					}
@@ -41,8 +36,8 @@ public class Checker {
 				checked.add(p);
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 }

@@ -43,7 +43,7 @@ public class Grid {
 					line = reader.readLine();
 					if(!line.equals(null)) {
 						data = line.split(" ");
-						pieces[j][i] = new Piece(Integer.parseInt(data[0]), Integer.parseInt(data[1]));
+						pieces[j][i] = new Piece(Integer.parseInt(data[0]), Integer.parseInt(data[1]),j,i);
 					}
 					else {
 						reader.close();
@@ -83,7 +83,7 @@ public class Grid {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/***
 	 * Retrieves neighbours (adjacent pieces) for a piece
 	 * @param p the piece for which we want to know its neighbours
