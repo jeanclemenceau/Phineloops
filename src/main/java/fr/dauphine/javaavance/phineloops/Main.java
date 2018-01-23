@@ -82,8 +82,8 @@ public class Main {
             System.out.println("Running phineloops checker.");
             inputFile = cmd.getOptionValue( "c" );
             // load grid from inputFile and check if it is solved...
-            Grid g = new Grid(inputFile);
             try{
+              Grid g = new Grid(inputFile);
               boolean solved = Checker.check(g);
               System.out.println("SOLVED: " + solved);
               new Grid(inputFile).print();

@@ -1,29 +1,37 @@
 package fr.dauphine.javaavance.phineloops.programs;
 
+import java.util.List;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.model.Piece;
 
 public class Solver {
-	private Grid grid;
-	private Deque<Piece> stack = new ArrayDeque<Piece>();
 	
-	public Solver(Grid grid) {
-		this.grid = grid;
-//		initStack();
+	private static class Node {
+		private Piece element;
+		private int currentAllocation;
+		private Node father;
+		private Deque<Integer> possibleAllocations = new ArrayDeque<Integer>();
+		
+		public Node(Piece p, Node f) {
+			element = p;
+			currentAllocation = p.getOrientation();
+			father = f;
+			for(int i = currentAllocation-1 % p.getOrientationMax()+1; i <= currentAllocation; i = i-1 % p.getOrientationMax()+1)
+				possibleAllocations.push(i);
+		}
 	}
 	
-	/***
-	 * Initialize the stack with all positions for each piece of the grid
-	 * @param grid
-	 */
-//	public void initStack(){
-//		for (Piece piece : grid.getPieces())
-//			for(int i = 0; i<piece.getOrientationMax(); i++)
-//				stack.push(new Piece(piece.getNum(), i));
-//	}
-	
-	
+	public static boolean solve(Grid g, Piece root) {
+		boolean solved = false;
+		List<Node> searchTree = new ArrayList<Node>();
+		
+		searchTree.add(new Node(root, null));
+		
+		
+		return solved;
+	}
 }
