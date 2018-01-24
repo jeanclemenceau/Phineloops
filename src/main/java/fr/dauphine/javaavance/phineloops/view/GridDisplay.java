@@ -3,27 +3,21 @@ package fr.dauphine.javaavance.phineloops.view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Window;
+import javax.swing.JPanel;
 
-import javax.swing.JDialog;
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.model.Piece;
 
-public class GridDisplay extends JDialog {
+public class GridDisplay extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	Grid g;
 	public GridDisplay(Grid g) {
-		super((Window)null);
-		setModal(true);
-		
+		this.g = g;
+		setPreferredSize(new Dimension(600, 600));
 		Piece[][] pieces = g.getPieces();
-		
-		setSize(new Dimension(1000,1000));		
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("PhineLoops");	
-		setLayout(new GridLayout(g.getHeight(), g.getWidth()));
+		if(g.getHeight()==0 && g.getWidth() ==0) setLayout(new GridLayout());
+		else setLayout(new GridLayout(g.getHeight(), g.getWidth()));
 		
 		for(int i = 0; i<g.getHeight(); i++)
 			for(int j = 0; j<g.getWidth(); j++) {
@@ -32,5 +26,6 @@ public class GridDisplay extends JDialog {
 		
 		setVisible(true);
 	}
+
 
 }

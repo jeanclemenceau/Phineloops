@@ -70,7 +70,7 @@ public class PieceDisplay extends JButton implements Observer {
 			if(orientation == 2) return "\u2533";
 			if(orientation == 3) return "\u252B";
 		case 4:
-			return "/images/4.jpg";
+			return "\u254B";
 		case 5:
 			if(orientation == 0) return "\u2517";
 			if(orientation == 1) return "\u250F";

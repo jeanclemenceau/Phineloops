@@ -1,0 +1,58 @@
+package fr.dauphine.javaavance.phineloops.view;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import fr.dauphine.javaavance.phineloops.programs.Generator;
+
+public class GeneratorPanel extends JPanel{
+	
+	private static final long serialVersionUID = 7466667841865132170L;
+
+	private final JTextField widthField = new JTextField();
+	private final JTextField heightField = new JTextField();
+	private final JLabel errorWarning = new JLabel("");
+	
+	public GeneratorPanel() {
+
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setBackground(Color.LIGHT_GRAY);
+		
+		widthField.setText("  w  ");
+		heightField.setText("  h  ");
+		
+		JPanel inputPanel = new JPanel();
+		inputPanel.setBackground(Color.LIGHT_GRAY);
+		inputPanel.add(widthField);
+		inputPanel.add(new JLabel("x"));
+		inputPanel.add(heightField);
+		
+		errorWarning.setForeground(Color.red);
+		
+		JButton generateButton = new JButton("Generate");
+		generateButton.setBackground(Color.white);
+		generateButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try{
+					errorWarning.setText("");
+					new MainDisplay(Generator.generateGrid(Integer.parseInt(widthField.getText().trim()), Integer.parseInt(heightField.getText().trim())));
+				}
+				catch(Exception ex) {
+					errorWarning.setText("Only numbers please");
+				}
+			}
+		});
+		
+		add(inputPanel);
+		add(generateButton);
+		add(errorWarning);
+	}
+}
