@@ -6,12 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Observable;
 import java.util.Random;
 import java.util.HashMap;
 
-public class Grid {
+public class Grid extends Observable {
 	private int width;
 	private int height;
 	private Piece[][] pieces;

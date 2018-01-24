@@ -29,7 +29,7 @@ public class Generator {
 				pieces[j][i] = values[randomizer.nextInt(values.length)];
 			}
 
-		//g.shuffle();
+		g.shuffle();
 
 		return g;
 	}

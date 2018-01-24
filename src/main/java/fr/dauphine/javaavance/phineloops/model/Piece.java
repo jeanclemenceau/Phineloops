@@ -1,6 +1,8 @@
 package fr.dauphine.javaavance.phineloops.model;
 
-public class Piece {
+import java.util.Observable;
+
+public class Piece extends Observable{
 	private int num;
 	private int orientation;
 	private int orientationMax;
@@ -28,8 +30,10 @@ public class Piece {
 	 * Pivot the piece by 90° (clockwise) 
 	 */
 	public void pivot() {
-		if(!fixed) 
+		if(!fixed) {
 			orientation = (orientation+1) % (orientationMax+1);
+			notifyObservers();
+		}
 		else
 			System.out.println("This piece is fixed. It can't rotate.");
 	}

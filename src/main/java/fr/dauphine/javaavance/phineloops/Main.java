@@ -11,6 +11,7 @@ import org.apache.commons.cli.ParseException;
 
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.programs.Generator;
+import fr.dauphine.javaavance.phineloops.view.GridDisplay;
 import fr.dauphine.javaavance.phineloops.programs.Checker;
 
 
@@ -55,7 +56,9 @@ public class Main {
             outputFile = cmd.getOptionValue( "o" );
             Grid grid = Generator.generateGrid(width, height);
             grid.print();
+            GridDisplay display = new GridDisplay(grid);
             grid.store(outputFile);
+            System.out.println("finished");
             // generate grid and store it to outputFile...
             //...
         }

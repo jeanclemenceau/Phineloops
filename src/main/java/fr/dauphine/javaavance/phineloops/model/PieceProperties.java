@@ -31,7 +31,7 @@ public enum PieceProperties {
 	public static String getUnicode(int num, int orientation) {
 		switch (num) {
 		case 0:
-			return "\u2205";
+			return " ";
 		case 1:
 			if(orientation == 0) return "\u2579";
 			if(orientation == 1) return "\u257A";
