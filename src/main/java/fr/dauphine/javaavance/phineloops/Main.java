@@ -25,6 +25,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+    	boolean graphicDisplay = false;
         Options options = new Options();
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
@@ -97,8 +98,8 @@ public class Main {
             }
         }
         else {
+        	graphicDisplay = true;
         	new MainDisplay(Generator.generateGrid(4, 4));
-        	while(true);
             //throw new ParseException("You must specify at least one of the following options: -generate -check -solve ");
         }
         } catch (ParseException e) {
@@ -108,6 +109,6 @@ public class Main {
             formatter.printHelp( "phineloops", options );
             System.exit(1); // exit with error
     }
-        System.exit(0); // exit with success
+        if(!graphicDisplay) System.exit(0); // exit with success
     }
 }
