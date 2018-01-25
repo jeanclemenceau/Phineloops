@@ -27,8 +27,8 @@ public class GeneratePanel extends JPanel{
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		setBackground(Color.LIGHT_GRAY);
 		
-		widthField.setText("  w  ");
-		heightField.setText("  h  ");
+		widthField.setText("  6  ");
+		heightField.setText("  6  ");
 		
 		JPanel inputPanel = new JPanel();
 		inputPanel.setBackground(Color.LIGHT_GRAY);
@@ -44,8 +44,8 @@ public class GeneratePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-					errorWarning.setText("");
 					new MainDisplay(Generator.generateGrid(Integer.parseInt(widthField.getText().trim()), Integer.parseInt(heightField.getText().trim())));
+					((JFrame) SwingUtilities.getRoot((Component) e.getSource())).dispose();
 				}
 				catch(Exception ex) {
 					errorWarning.setText("Only numbers please");

@@ -26,11 +26,10 @@ public class Solver {
 		}
 	}
 
-	public boolean solve2(Grid g, Piece first){
-		Node current = new Node(first, null);
-		if(Checker.check(g))
-			return true;
-
+	public static boolean solve2(Grid g){
+		while(!Checker.check(g))
+			g.shuffle();
+		return true;
 	}
 
 	public static boolean solve(Grid g, Piece root) {

@@ -99,7 +99,7 @@ public class Main {
         }
         else {
         	graphicDisplay = true;
-        	new MainDisplay(Generator.generateGrid(4, 4));
+        	new MainDisplay(Generator.generateGrid(6, 6));
             //throw new ParseException("You must specify at least one of the following options: -generate -check -solve ");
         }
         } catch (ParseException e) {

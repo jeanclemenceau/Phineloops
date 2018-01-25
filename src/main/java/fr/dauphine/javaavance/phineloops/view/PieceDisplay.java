@@ -28,8 +28,8 @@ public class PieceDisplay extends JButton implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println(p.toString());
 				p.pivot();
+				System.out.println(p.toString());
 			}
 		});
 		

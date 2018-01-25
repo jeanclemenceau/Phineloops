@@ -11,9 +11,8 @@ import fr.dauphine.javaavance.phineloops.model.Piece;
 public class GridDisplay extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	Grid g;
+
 	public GridDisplay(Grid g) {
-		this.g = g;
 		setPreferredSize(new Dimension(600, 600));
 		Piece[][] pieces = g.getPieces();
 		if(g.getHeight()==0 && g.getWidth() ==0) setLayout(new GridLayout());
