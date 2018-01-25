@@ -13,6 +13,7 @@ import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.programs.Generator;
 import fr.dauphine.javaavance.phineloops.view.MainDisplay;
 import fr.dauphine.javaavance.phineloops.programs.Checker;
+import fr.dauphine.javaavance.phineloops.programs.Solver;
 
 
 public class Main {
@@ -71,13 +72,13 @@ public class Main {
             // load grid from inputFile, solve it and store result to outputFile...
             try {
       				Grid grid = new Grid(inputFile);
+              solved =Solver.solve(grid, grid.getPieces()[0][0]);
+              System.out.println("SOLVED: " + solved);
       				grid.print();
       				grid.store(outputFile);
       			} catch (Exception e) {
       				e.printStackTrace();
       			}
-
-            System.out.println("SOLVED: " + solved);
         }
 
         else if( cmd.hasOption( "c" )) {

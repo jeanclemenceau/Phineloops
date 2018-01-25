@@ -9,7 +9,7 @@ public class Piece extends Observable{
 	private int nbConnections;
 	private boolean fixed = false;
 	private int x, y;
-	
+
 	public Piece(int num, int orientation) {
 		this.num = num;
 		this.orientation = orientation;
@@ -25,9 +25,9 @@ public class Piece extends Observable{
 		orientationMax = PieceProperties.getIdentifier(num).getOrientationMax();
 		nbConnections = PieceProperties.getIdentifier(num).getNbConnections();
 	}
-	
+
 	/***
-	 * Pivot the piece by 90° (clockwise) 
+	 * Pivot the piece by 90° (clockwise)
 	 */
 	public void pivot() {
 		if(!fixed) {
@@ -53,13 +53,21 @@ public class Piece extends Observable{
 	public int getNum() {
 		return num;
 	}
-	
+
 	public int getX() {
 		return x;
 	}
 
 	public int getY() {
 		return y;
+	}
+
+	public boolean getFixed(){
+		return fixed;
+	}
+
+	public void setFixed(boolean b){
+		this.fixed = b;
 	}
 
 	public String toUnicode() {
@@ -70,4 +78,30 @@ public class Piece extends Observable{
 	public String toString() {
 		return "Piece [num=" + num + ", orientation=" + orientation + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + num;
+		result = prime * result + orientation;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Piece other = (Piece) obj;
+		if (num != other.num)
+			return false;
+		if (orientation != other.orientation)
+			return false;
+		return true;
+	}
+	
 }
