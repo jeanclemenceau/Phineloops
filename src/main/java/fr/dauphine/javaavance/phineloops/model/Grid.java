@@ -132,6 +132,61 @@ public class Grid extends Observable {
 		return allNeighbours;
 	}
 
+	public boolean isAllowedOrientation(int x, int y, Piece p){
+		Set<Integer> allowedValues = getAllowedValues(x, y);
+		Set<Piece> possiblePieces = new HashSet<Piece>();
+		Piece up;
+		Piece left;
+		if(x != 0)
+			left = pieces[x-1][y];
+		else{
+			left = new Piece(0,0);
+			left.setFixed(true);
+		}
+		if(y != 0)
+			up = pieces[x][y-1];
+		else{
+			up = new Piece(0,0);
+			up.setFixed(true);
+		}
+
+
+		int nbCoUp = PieceProperties.getLinksOnCardinalPoints(up.getNum(),up.getOrientation())[2];
+		int nbCoLeft = PieceProperties.getLinksOnCardinalPoints(left.getNum(),left.getOrientation())[1];
+		int[] links;
+		boolean addable;
+
+		for(Integer i : allowedValues){
+			Piece tmp2 = new Piece(i,0,x,y);
+			System.out.println("on regarde la piece de numero "+ i);
+			for(int j = 0; j<=tmp2.getOrientationMax(); j++){
+				links = PieceProperties.getLinksOnCardinalPoints(i,j);
+				addable = true;
+
+				if(x==0 && nbCoLeft != links[3] && left.getFixed())
+				  addable = false;
+				else if(y==0 &&  nbCoUp!= links[0] && up.getFixed())
+				  addable = false;
+				else if( y==height-1 && links[2] != 0)
+				  addable = false;
+				else if ( x==width-1 && links[1] != 0)
+				  addable = false;
+				else if (links[0] != nbCoUp && up.getFixed())
+				  addable = false;
+				else if (links[3] != nbCoLeft && left.getFixed())
+				  addable = false;
+
+				if(addable)
+				  possiblePieces.add(new Piece(i,j,x,y));
+
+			}
+		}
+
+		for(Piece pi : possiblePieces)
+			System.out.println(pi.toUnicode());
+		return possiblePieces.contains(p);
+	}
+
 	/***
 	 * Method that indicates the possible pieces for a case of the grid
 	 * @param  int  x             abscissa
@@ -152,26 +207,29 @@ public class Grid extends Observable {
 		else
 			up = new Piece(0,0);
 
-
 		int nbCoUp = PieceProperties.getLinksOnCardinalPoints(up.getNum(),up.getOrientation())[2];
 		int nbCoLeft = PieceProperties.getLinksOnCardinalPoints(left.getNum(),left.getOrientation())[1];
 		int[] links;
 
 		for(Integer i : allowedValues){
-			for(int j = 0; j<=new Piece(i,0).getOrientationMax(); j++){
+			for(int j = 0; j<=new Piece(i,0,x,y).getOrientationMax(); j++){
 				links = PieceProperties.getLinksOnCardinalPoints(i,j);
+
 				if(links[0] == nbCoUp && links[3] == nbCoLeft){
 					//for pieces not on the right nor down edges of the grid
-					if(x<width-1 && y < height-1)
+					if(x<width-1 && y < height-1){
 						possiblePieces.add(new Piece(i,j,x,y));
+					}
 
 					//for pieces on the down edge of the grid except the bottom right piece
-					else if(y == height-1 && links[2] == 0 && x!= width-1)
+					else if(y == height-1 && links[2] == 0 && x!= width-1){
 						possiblePieces.add(new Piece(i,j,x,y));
+					}
 
 					//for pieces on the right edge of the grid
-					else if(x == width-1 && links[1]==0 && (y != height-1 || links[2] == 0))
+					else if(x == width-1 && links[1]==0 && (y != height-1 || links[2] == 0)){
 						possiblePieces.add(new Piece(i,j,x,y));
+					}
 				}
 			}
 		}
@@ -257,6 +315,10 @@ public class Grid extends Observable {
 
 	public Piece[][] getPieces() {
 		return pieces;
+	}
+
+	public void setPieces(int x, int y, Piece p){
+		pieces[x][y] = p;
 	}
 
 	public int getWidth() {

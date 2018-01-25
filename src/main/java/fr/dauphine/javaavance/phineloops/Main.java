@@ -72,6 +72,8 @@ public class Main {
             // load grid from inputFile, solve it and store result to outputFile...
             try {
       				Grid grid = new Grid(inputFile);
+              //grid.print();
+
               solved =Solver.solve(grid, grid.getPieces()[0][0]);
               System.out.println("SOLVED: " + solved);
       				grid.print();
