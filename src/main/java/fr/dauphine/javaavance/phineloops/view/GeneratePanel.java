@@ -1,18 +1,21 @@
 package fr.dauphine.javaavance.phineloops.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import fr.dauphine.javaavance.phineloops.programs.Generator;
 
-public class GeneratorPanel extends JPanel{
+public class GeneratePanel extends JPanel{
 	
 	private static final long serialVersionUID = 7466667841865132170L;
 
@@ -20,8 +23,7 @@ public class GeneratorPanel extends JPanel{
 	private final JTextField heightField = new JTextField();
 	private final JLabel errorWarning = new JLabel("");
 	
-	public GeneratorPanel() {
-
+	public GeneratePanel() {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		setBackground(Color.LIGHT_GRAY);
 		

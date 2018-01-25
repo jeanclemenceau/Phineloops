@@ -95,7 +95,8 @@ public class Main {
             }
         }
         else {
-        	new MainDisplay(Generator.generateGrid(6, 6));
+        	new MainDisplay(Generator.generateGrid(4, 4));
+        	while(true);
             //throw new ParseException("You must specify at least one of the following options: -generate -check -solve ");
         }
         } catch (ParseException e) {

@@ -27,5 +27,4 @@ public class GridDisplay extends JPanel {
 		setVisible(true);
 	}
 
-
 }
