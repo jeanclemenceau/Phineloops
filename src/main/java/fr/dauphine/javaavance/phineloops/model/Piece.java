@@ -45,7 +45,7 @@ public class Piece extends Observable{
 	public int getOrientation() {
 		return orientation;
 	}
-	
+
 	public void setOrientation(int orientation) {
 		while(this.orientation!=orientation) pivot();
 	}
@@ -80,7 +80,7 @@ public class Piece extends Observable{
 
 	@Override
 	public String toString() {
-		return "Piece [num=" + num + ", orientation=" + orientation + "]";
+		return "Piece [num=" + num + ", orientation=" + orientation + ", x=" + x + ", y=" + y+ "]";
 	}
 
 	@Override
@@ -89,6 +89,8 @@ public class Piece extends Observable{
 		int result = 1;
 		result = prime * result + num;
 		result = prime * result + orientation;
+		result = prime * result + x;
+		result = prime * result + y;
 		return result;
 	}
 
@@ -105,7 +107,11 @@ public class Piece extends Observable{
 			return false;
 		if (orientation != other.orientation)
 			return false;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
 		return true;
 	}
-	
+
 }

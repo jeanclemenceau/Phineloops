@@ -18,38 +18,37 @@ public class PieceDisplay extends JButton implements Observer {
 	private static final long serialVersionUID = 1L;
 	private final Piece p;
 	private Image image;
-	
+
 	public PieceDisplay(final Piece p) {
 		this.p = p;
-		
+
 		setBackground(Color.WHITE);
 
-		this.addActionListener(new ActionListener() {	
+		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				p.pivot();
-				System.out.println(p.toString());
 			}
 		});
-		
+
 		p.addObserver(this);
 	}
-	
+
 	public void paintComponent(Graphics g) {
 	    super.paintComponent(g);
-	    
+
 	    if(PieceDisplay.class.getResource(getImage(p.getNum(),p.getOrientation()))!=null)
 			image = new ImageIcon(PieceDisplay.class.getResource(getImage(p.getNum(),p.getOrientation()))).getImage();
 
 	    g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 	  }
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
 	}
-	
+
 	public String getImage(int num, int orientation) {
 		switch (num) {
 		case 0:

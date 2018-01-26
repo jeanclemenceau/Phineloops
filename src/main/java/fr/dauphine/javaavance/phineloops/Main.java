@@ -58,6 +58,8 @@ public class Main {
             outputFile = cmd.getOptionValue( "o" );
             Grid grid = Generator.generateGrid(width, height);
             grid.print();
+            new MainDisplay(grid);
+            graphicDisplay=true;
             grid.store(outputFile);
             System.out.println("finished");
             // generate grid and store it to outputFile...
@@ -75,7 +77,7 @@ public class Main {
       				Grid grid = new Grid(inputFile);
               grid.print();
 
-              solved =Solver.solve3(grid, grid.getPieces()[0][0]);
+              solved =Solver.solve(grid, grid.getPieces()[0][0]);
               System.out.println("SOLVED: " + solved);
       				grid.print();
       				grid.store(outputFile);

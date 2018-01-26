@@ -1,5 +1,6 @@
 package fr.dauphine.javaavance.phineloops.model;
 
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -150,7 +151,6 @@ public class Grid extends Observable {
 			up.setFixed(true);
 		}
 
-
 		int nbCoUp = PieceProperties.getLinksOnCardinalPoints(up.getNum(),up.getOrientation())[2];
 		int nbCoLeft = PieceProperties.getLinksOnCardinalPoints(left.getNum(),left.getOrientation())[1];
 		int[] links;
@@ -281,14 +281,14 @@ public class Grid extends Observable {
 
 		return allowedValues;
 	}
-	
-	public boolean isAllowedOrientation(Piece p, Set<Piece> s) {
+
+	public boolean isAllowedOrientation(Piece p, List<Piece> s) {
 		int x = p.getX();
 		int y = p.getY();
 		Piece[] neighbours = getPieceNeighbours(p);
 		int[] links = PieceProperties.getLinksOnCardinalPoints(p.getNum(), p.getOrientation());
 		int[] neighbourLinks;
-		
+
 		if(y==0 & links[0]!=0) return false;
 		if(x==0 & links[3]!=0) return false;
 		if(y==height-1 && links[2]!=0) return false;
@@ -296,7 +296,9 @@ public class Grid extends Observable {
 		for (int i = 0; i<neighbours.length; i++) {
 			if(s.contains(neighbours[i])) {
 				neighbourLinks = PieceProperties.getLinksOnCardinalPoints(neighbours[i].getNum(), neighbours[i].getOrientation());
-				if(links[i]!=neighbourLinks[(i+2)%4]) return false;
+				if(links[i]!=neighbourLinks[(i+2)%4]) {
+					return false;
+				}
 			}
 		}
 		return true;
