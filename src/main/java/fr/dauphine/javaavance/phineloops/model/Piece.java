@@ -32,6 +32,7 @@ public class Piece extends Observable{
 	public void pivot() {
 		if(!fixed) {
 			orientation = (orientation+1) % (orientationMax+1);
+			setChanged();
 			notifyObservers();
 		}
 		else

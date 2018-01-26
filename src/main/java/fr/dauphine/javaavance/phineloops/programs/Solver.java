@@ -1,30 +1,26 @@
 package fr.dauphine.javaavance.phineloops.programs;
 
 import java.util.List;
-import java.util.Set;
 
 import java.util.Iterator;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
-import java.util.HashSet;
 
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.model.Piece;
-import fr.dauphine.javaavance.phineloops.model.PieceProperties;
 
 public class Solver {
 
 
 	private static class Element {
-		private int x, y, num, orientation;
+		private int x, y, orientation;
 
 
 		public Element(int x, int y, int num, int orientation) {
 			this.x = x;
 			this.y = y;
-			this.num = num;
 			this.orientation = orientation;
 		}
 	}
@@ -47,7 +43,7 @@ public class Solver {
 			current = g.getPieces()[tmp.x][tmp.y];
 			current.setOrientation(tmp.orientation);
 			if(visited.contains(current)){
-				Iterator it = visited.iterator();
+				Iterator<Piece> it = visited.iterator();
 				while(it.hasNext()&& it.next()!=current)
 				it.remove();
 				while(it.hasNext()){

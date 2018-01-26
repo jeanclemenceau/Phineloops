@@ -27,8 +27,8 @@ public class GeneratePanel extends JPanel{
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		setBackground(Color.LIGHT_GRAY);
 		
-		widthField.setText("  6  ");
-		heightField.setText("  6  ");
+		widthField.setText("  4  ");
+		heightField.setText("  4  ");
 		
 		JPanel inputPanel = new JPanel();
 		inputPanel.setBackground(Color.LIGHT_GRAY);

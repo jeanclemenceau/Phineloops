@@ -7,13 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Observable;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Grid extends Observable {
+public class Grid {
 	private int width;
 	private int height;
 	private Piece[][] pieces;

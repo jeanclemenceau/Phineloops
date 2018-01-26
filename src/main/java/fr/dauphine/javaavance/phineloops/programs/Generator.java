@@ -1,12 +1,10 @@
 package fr.dauphine.javaavance.phineloops.programs;
 
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.model.Piece;
-import fr.dauphine.javaavance.phineloops.model.PieceProperties;
 
 public class Generator {
 	/***

@@ -5,7 +5,6 @@ import fr.dauphine.javaavance.phineloops.model.Piece;
 import fr.dauphine.javaavance.phineloops.model.PieceProperties;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 
 public class Checker {
 
