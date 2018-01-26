@@ -13,10 +13,8 @@ import fr.dauphine.javaavance.phineloops.model.Piece;
 
 public class Solver {
 
-
 	private static class Element {
 		private int x, y, orientation;
-
 
 		public Element(int x, int y, int num, int orientation) {
 			this.x = x;
@@ -31,27 +29,38 @@ public class Solver {
 		List<Piece> visited = new ArrayList<>();
 		Piece current;
 		Piece toStack;
-		Element tmp;
-
+		Element tmp;		
+		
 		for(int i = root.getOrientationMax(); i>=0; i--) {
 			stack.push(new Element(root.getX(), root.getY(), root.getNum(), (root.getOrientation()+i)%(root.getOrientationMax()+1)));
 		}
 
 		while(!stack.isEmpty()) {
+//			for (Element e : stack) {
+//				System.out.println("|"+g.getPieces()[e.x][e.y].toString()+" ORIENTATION ELEMENT :"+ e.orientation+"|");
+//			}
+//			System.out.println("_________________________________________\n\n\n");
+//			for (Piece piece : visited) {
+//				System.out.print("----->"+piece.toString());
+//			}
+//			System.out.println("\n");
 			tmp = stack.pop();
-
+			
 			current = g.getPieces()[tmp.x][tmp.y];
 			current.setOrientation(tmp.orientation);
+			
 			if(visited.contains(current)){
 				Iterator<Piece> it = visited.iterator();
-				while(it.hasNext()&& it.next()!=current)
+				while(it.hasNext()&& it.next()!=current);
 				it.remove();
 				while(it.hasNext()){
 					it.next();
 					it.remove();
 				}
 			}
+			
 			if(Checker.check(g)) return true;
+			
 			if(g.isAllowedOrientation(current, visited)){
 				if(!visited.contains(current)) visited.add(current);
 				toStack = getNext(g, current);
@@ -80,7 +89,5 @@ public class Solver {
 			g.shuffle();
 		return true;
 	}
-
-
 
 }

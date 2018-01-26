@@ -288,8 +288,8 @@ public class Grid {
 		int[] links = PieceProperties.getLinksOnCardinalPoints(p.getNum(), p.getOrientation());
 		int[] neighbourLinks;
 
-		if(y==0 & links[0]!=0) return false;
-		if(x==0 & links[3]!=0) return false;
+		if(y==0 && links[0]!=0) return false;
+		if(x==0 && links[3]!=0) return false;
 		if(y==height-1 && links[2]!=0) return false;
 		if(x==width-1 && links[1]!=0) return false;
 		for (int i = 0; i<neighbours.length; i++) {
