@@ -92,9 +92,8 @@ public class Main {
             // load grid from inputFile and check if it is solved...
             try{
               Grid g = new Grid(inputFile);
-              boolean solved = Checker.check(g);
-              System.out.println("SOLVED: " + solved);
-              new Grid(inputFile).print();
+              //g.print();
+              System.out.println("SOLVED: " + Checker.check(g));
             }catch(Exception e){
               e.printStackTrace();
             }
