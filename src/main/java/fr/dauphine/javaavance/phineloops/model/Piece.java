@@ -45,6 +45,10 @@ public class Piece extends Observable{
 	public int getOrientation() {
 		return orientation;
 	}
+	
+	public void setOrientation(int orientation) {
+		while(this.orientation!=orientation) pivot();
+	}
 
 	public int getNbConnections() {
 		return nbConnections;

@@ -73,9 +73,9 @@ public class Main {
             // load grid from inputFile, solve it and store result to outputFile...
             try {
       				Grid grid = new Grid(inputFile);
-              //grid.print();
+              grid.print();
 
-              solved =Solver.solve(grid, grid.getPieces()[0][0]);
+              solved =Solver.solve3(grid, grid.getPieces()[0][0]);
               System.out.println("SOLVED: " + solved);
       				grid.print();
       				grid.store(outputFile);

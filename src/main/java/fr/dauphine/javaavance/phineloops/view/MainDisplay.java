@@ -21,7 +21,7 @@ public class MainDisplay extends JFrame {
 	public MainDisplay(Grid g) {
 		super();
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setResizable(true);
+		setResizable(false);
 		setSize(new Dimension(960, 720));
 		setTitle("Phineloops");
 		setIconImage(new ImageIcon(getClass().getResource("/images/icon.png")).getImage());
