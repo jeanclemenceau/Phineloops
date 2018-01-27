@@ -2,7 +2,7 @@
 
 ## Betty BISMUTH & Jean CLEMENCEAU
 
-### M1 MIAGe Université Paris-Dauphine - Advanced Java Course
+### M1 MIAGE Université Paris-Dauphine - Advanced Java Course
 
 This project was made using Java programming language and Apache Maven software project management.
 
