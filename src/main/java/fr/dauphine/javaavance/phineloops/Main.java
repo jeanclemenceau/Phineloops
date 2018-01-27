@@ -81,8 +81,9 @@ public class Main {
       				Grid grid = new Grid(inputFile);
               grid.print();
 
-              // odd choice of a piece to start the solver with
-              if(choice == 0) solved =Solver.solveOdd(grid);
+              // random choice of a piece to start the solver with then left to right
+              if(choice == 0) solved = Solver.solveRandom(grid);
+              if(choice == 1) solved = Solver.solveFix(grid);
               System.out.println("SOLVED: " + solved);
       				grid.print();
       				grid.store(outputFile);

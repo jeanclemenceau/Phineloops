@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -16,11 +17,13 @@ public class Grid {
 	private int width;
 	private int height;
 	private Piece[][] pieces;
+	private List<Piece> piecesFixed;
 
 	public Grid(int width, int height) {
 		this.width = width;
 		this.height = height;
 		pieces = new Piece[width][height];
+		piecesFixed = new ArrayList<Piece>();
 	}
 
 	/***
@@ -38,13 +41,21 @@ public class Grid {
 			width = Integer.parseInt(reader.readLine());
 			height = Integer.parseInt(reader.readLine());
 			pieces = new Piece[width][height];
+			piecesFixed = new ArrayList<Piece>();
 
+
+			int number;
 			for(int i = 0; i<height; i++) {
 				for(int j = 0; j<width; j++) {
 					line = reader.readLine();
 					if(!line.equals(null)) {
 						data = line.split(" ");
-						pieces[j][i] = new Piece(Integer.parseInt(data[0]), Integer.parseInt(data[1]),j,i);
+						number = Integer.parseInt(data[0]);
+						pieces[j][i] = new Piece(number, Integer.parseInt(data[1]),j,i);
+						if(number == 0 || number == 4) {
+							pieces[j][i].setFixed(true);
+							piecesFixed.add(pieces[j][i]);
+						}
 					}
 					else {
 						reader.close();
@@ -132,59 +143,6 @@ public class Grid {
 		return allNeighbours;
 	}
 
-	public boolean isAllowedOrientation(int x, int y, Piece p){
-		Set<Integer> allowedValues = getAllowedValues(x, y);
-		Set<Piece> possiblePieces = new HashSet<Piece>();
-		Piece up;
-		Piece left;
-		if(x != 0)
-			left = pieces[x-1][y];
-		else{
-			left = new Piece(0,0);
-			left.setFixed(true);
-		}
-		if(y != 0)
-			up = pieces[x][y-1];
-		else{
-			up = new Piece(0,0);
-			up.setFixed(true);
-		}
-
-		int nbCoUp = PieceProperties.getLinksOnCardinalPoints(up.getNum(),up.getOrientation())[2];
-		int nbCoLeft = PieceProperties.getLinksOnCardinalPoints(left.getNum(),left.getOrientation())[1];
-		int[] links;
-		boolean addable;
-
-		for(Integer i : allowedValues){
-			Piece tmp2 = new Piece(i,0,x,y);
-			System.out.println("on regarde la piece de numero "+ i);
-			for(int j = 0; j<=tmp2.getOrientationMax(); j++){
-				links = PieceProperties.getLinksOnCardinalPoints(i,j);
-				addable = true;
-
-				if(x==0 && nbCoLeft != links[3] && left.getFixed())
-				  addable = false;
-				else if(y==0 &&  nbCoUp!= links[0] && up.getFixed())
-				  addable = false;
-				else if( y==height-1 && links[2] != 0)
-				  addable = false;
-				else if ( x==width-1 && links[1] != 0)
-				  addable = false;
-				else if (links[0] != nbCoUp && up.getFixed())
-				  addable = false;
-				else if (links[3] != nbCoLeft && left.getFixed())
-				  addable = false;
-
-				if(addable)
-				  possiblePieces.add(new Piece(i,j,x,y));
-
-			}
-		}
-
-		for(Piece pi : possiblePieces)
-			System.out.println(pi.toUnicode());
-		return possiblePieces.contains(p);
-	}
 
 	/***
 	 * Method that indicates the possible pieces for a case of the grid
@@ -350,4 +308,7 @@ public class Grid {
 		return height;
 	}
 
+	public List<Piece> getPiecesFixed(){
+		return piecesFixed;
+	}
 }

@@ -24,7 +24,7 @@ public class ActionsDisplay extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Solver.solveOdd(g);
+				Solver.solveFix(g);
 			}
 		});
 		setBackground(Color.LIGHT_GRAY);
