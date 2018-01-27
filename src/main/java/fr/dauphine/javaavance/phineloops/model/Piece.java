@@ -2,45 +2,83 @@ package fr.dauphine.javaavance.phineloops.model;
 
 import java.util.Observable;
 
-public class Piece extends Observable{
-	private int num;
+/**
+ * Represent a piece 
+ *@see Observable
+ */
+public class Piece extends Observable {
+	
+	/**
+	 * The number of the piece. ie : its identifier
+	 */
+	private final int num;
+	
+	/**
+	 * Current orientation of the piece
+	 */
 	private int orientation;
-	private int orientationMax;
-	private int nbConnections;
-	private boolean fixed = false;
-	private int x, y;
+	
+	/**
+	 * The maximum number the orientation of the piece can take
+	 */
+	private final int maxOrientation;
+	
+	/**
+	 * Wether the piece is fixed (can't rotate) or not
+	 */
+	private boolean isFixed = false;
+	
+	/**
+	 * Abscissa of the piece on a grid
+	 */
+	private final int x;
+	
+	/**
+	 * Ordinate of the piece on a grid
+	 */
+	private final int y;
 
+	/**
+	 * Constructor for a piece with no grid directly associated (neither x and y provided)
+	 * @param num the piece number
+	 * @param orientation the piece orientation
+	 */
 	public Piece(int num, int orientation) {
 		this.num = num;
 		this.orientation = orientation;
-		orientationMax = PieceProperties.getIdentifier(num).getOrientationMax();
-		nbConnections = PieceProperties.getIdentifier(num).getNbConnections();
+		maxOrientation = PieceProperties.getIdentifier(num).getOrientationMax();
+		x = 0;
+		y = 0;
 	}
 
+	/**
+	 * Constructor for a piece with its position on a grid
+	 * @param num the piece number
+	 * @param orientation the piece orientation
+	 * @param x abscissa coordinate
+	 * @param y ordinate coordinate
+	 */
 	public Piece(int num, int orientation, int x, int y) {
 		this.num = num;
 		this.orientation = orientation;
 		this.x = x;
 		this.y = y;
-		orientationMax = PieceProperties.getIdentifier(num).getOrientationMax();
-		nbConnections = PieceProperties.getIdentifier(num).getNbConnections();
+		maxOrientation = PieceProperties.getIdentifier(num).getOrientationMax();
 	}
 
 	/***
 	 * Pivot the piece by 90° (clockwise)
 	 */
 	public void pivot() {
-		if(!fixed) {
-			orientation = (orientation+1) % (orientationMax+1);
+		if(!isFixed) {
+			orientation = (orientation+1) % (maxOrientation+1);
 			setChanged();
 			notifyObservers();
 		}
-		else
-			System.out.println("This piece is fixed. It can't rotate.");
 	}
 
 	public int getOrientationMax() {
-		return orientationMax;
+		return maxOrientation;
 	}
 
 	public int getOrientation() {
@@ -49,10 +87,6 @@ public class Piece extends Observable{
 
 	public void setOrientation(int orientation) {
 		while(this.orientation!=orientation) pivot();
-	}
-
-	public int getNbConnections() {
-		return nbConnections;
 	}
 
 	public int getNum() {
@@ -68,11 +102,11 @@ public class Piece extends Observable{
 	}
 
 	public boolean getFixed(){
-		return fixed;
+		return isFixed;
 	}
 
 	public void setFixed(boolean b){
-		this.fixed = b;
+		this.isFixed = b;
 	}
 
 	public String toUnicode() {

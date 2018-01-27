@@ -3,11 +3,22 @@ package fr.dauphine.javaavance.phineloops.programs;
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.model.Piece;
 import fr.dauphine.javaavance.phineloops.model.PieceProperties;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * This class embed the process of checking the resolution of a grid
+ *
+ */
 public class Checker {
 
+	/**
+	 * Check a grid
+	 * Explore the grid cell by cell and verify if the connections of corresponding piece and its neighbors are well plugged
+	 * @param grid the grid to check
+	 * @return a boolean : true if the grid is resolved / false if the grid is not resolved
+	 * 
+	 * @see Grid
+	 * @see Piece
+	 */
 	public static boolean check(Grid grid) {
 		int[] connections;
 		Piece p;

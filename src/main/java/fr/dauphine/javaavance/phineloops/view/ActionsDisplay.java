@@ -13,10 +13,23 @@ import javax.swing.JPanel;
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.programs.Solver;
 
+/**
+ * A JPanel which contains the possible actions for a user of the graphic interface
+ * @see JPanel
+ *  
+ */
 public class ActionsDisplay extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructor of the actions panel
+	 * <p>
+	 * It puts the different panel for different actions one above the other
+	 * </p>
+	 * @param g
+	 * 			The grid displayed on the frame
+	 */
 	public ActionsDisplay(final Grid g) {
 		JButton solverButton = new JButton("Solve");
 		solverButton.setBackground(Color.white);

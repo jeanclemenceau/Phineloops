@@ -13,12 +13,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Represent a grid. ie : a level of the phineloops game.
+ *@see Grid
+ */
 public class Grid {
+	
+	/**
+	 * The width of the grid
+	 */
 	private int width;
+	
+	/**
+	 * The height of the grid
+	 */
 	private int height;
+	
+	/**
+	 * The pieces composing the grid, double dimension array first index is abscissa and second index ordinate 
+	 */
 	private Piece[][] pieces;
+	
+	/**
+	 * The list of the fixed pieces of the grid
+	 */
 	private List<Piece> piecesFixed;
 
+	/**
+	 * Constructor basic
+	 * @param width width of the grid
+	 * @param height height of the grid
+	 */
 	public Grid(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -239,6 +264,14 @@ public class Grid {
 		return allowedValues;
 	}
 
+	/**
+	 * If orientation of given piece is ok with pieces already tested and with its position on the grid (corner, edge...)
+	 * @param p a piece to test its orientation
+	 * @param s pieces already visited by the solver
+	 * @return true if the piece can stay in this orientation or false if it can't
+	 * 
+	 * @see Piece
+	 */
 	public boolean isAllowedOrientation(Piece p, List<Piece> s) {
 		int x = p.getX();
 		int y = p.getY();
