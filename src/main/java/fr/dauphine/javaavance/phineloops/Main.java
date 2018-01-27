@@ -22,7 +22,7 @@ public class Main {
     private static Integer width = -1;
     private static Integer height = -1;
     private static Integer maxcc = -1;
-
+    private static Integer choice = -1;
 
     public static void main(String[] args) {
     	boolean graphicDisplay = false;
@@ -37,7 +37,9 @@ public class Main {
         options.addOption("o", "output", true, "Store the generated or solved grid in <arg>. (Use only with --generate and --solve.)");
         options.addOption("t", "threads", true, "Maximum number of solver threads. (Use only with --solve.)");
         options.addOption("x", "nbcc", true, "Maximum number of connected components. (Use only with --generate.)");
+        options.addOption("ch", "choice", true, "Chose the piece to test with the method indicated in <arg>. (Use only with --solve.)");
         options.addOption("h", "help", false, "Display this help");
+
 
         try {
             cmd = parser.parse( options, args);
@@ -70,6 +72,8 @@ public class Main {
             inputFile = cmd.getOptionValue( "s" );
             if(! cmd.hasOption("o")) throw new ParseException("Missing mandatory --output argument.");
             outputFile = cmd.getOptionValue( "o" );
+            if(! cmd.hasOption("ch")) choice = 0;
+            else choice = Integer.parseInt(cmd.getOptionValue("ch"));
             boolean solved = false;
 
             // load grid from inputFile, solve it and store result to outputFile...
@@ -77,7 +81,8 @@ public class Main {
       				Grid grid = new Grid(inputFile);
               grid.print();
 
-              solved =Solver.solve(grid, grid.getPieces()[0][0]);
+              // odd choice of a piece to start the solver with
+              if(choice == 0) solved =Solver.solveOdd(grid);
               System.out.println("SOLVED: " + solved);
       				grid.print();
       				grid.store(outputFile);

@@ -29,6 +29,7 @@ public class PieceDisplay extends JButton implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				p.pivot();
+				System.out.println(p.toString());
 			}
 		});
 

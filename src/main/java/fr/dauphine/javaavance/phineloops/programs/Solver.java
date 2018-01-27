@@ -1,7 +1,7 @@
 package fr.dauphine.javaavance.phineloops.programs;
 
 import java.util.List;
-
+import java.util.Random;
 import java.util.Iterator;
 
 import java.util.ArrayDeque;
@@ -23,32 +23,33 @@ public class Solver {
 		}
 	}
 
-
-	public static boolean solve(Grid g, Piece root) {
+	/**
+	 * Method that solves the grid. It starts the algorithm by an odd piece of the
+	 * grid and checks the other pieces from the left to the right
+	 * @param  Grid g             the grid to solve
+	 * @return      true if the grid is solved
+	 */
+	public static boolean solveOdd(Grid g) {
+		Piece root;
+		Random rx = new Random();
+		Random ry = new Random();
+		root = g.getPieces()[rx.nextInt(g.getWidth()+1)][ry.nextInt(g.getHeight()+1)];
 		Deque<Element> stack = new ArrayDeque<Element>();
 		List<Piece> visited = new ArrayList<>();
 		Piece current;
 		Piece toStack;
-		Element tmp;		
-		
+		Element tmp;
+
 		for(int i = root.getOrientationMax(); i>=0; i--) {
 			stack.push(new Element(root.getX(), root.getY(), root.getNum(), (root.getOrientation()+i)%(root.getOrientationMax()+1)));
 		}
 
 		while(!stack.isEmpty()) {
-//			for (Element e : stack) {
-//				System.out.println("|"+g.getPieces()[e.x][e.y].toString()+" ORIENTATION ELEMENT :"+ e.orientation+"|");
-//			}
-//			System.out.println("_________________________________________\n\n\n");
-//			for (Piece piece : visited) {
-//				System.out.print("----->"+piece.toString());
-//			}
-//			System.out.println("\n");
 			tmp = stack.pop();
-			
+
 			current = g.getPieces()[tmp.x][tmp.y];
 			current.setOrientation(tmp.orientation);
-			
+
 			if(visited.contains(current)){
 				Iterator<Piece> it = visited.iterator();
 				while(it.hasNext()&& it.next()!=current);
@@ -58,9 +59,9 @@ public class Solver {
 					it.remove();
 				}
 			}
-			
+
 			if(Checker.check(g)) return true;
-			
+
 			if(g.isAllowedOrientation(current, visited)){
 				if(!visited.contains(current)) visited.add(current);
 				toStack = getNext(g, current);
