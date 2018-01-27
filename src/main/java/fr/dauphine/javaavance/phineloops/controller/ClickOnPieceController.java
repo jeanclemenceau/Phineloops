@@ -1,4 +1,4 @@
-package controller;
+package fr.dauphine.javaavance.phineloops.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

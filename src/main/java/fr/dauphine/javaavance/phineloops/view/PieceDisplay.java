@@ -9,7 +9,7 @@ import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import controller.ClickOnPieceController;
+import fr.dauphine.javaavance.phineloops.controller.ClickOnPieceController;
 import fr.dauphine.javaavance.phineloops.model.Piece;
 import fr.dauphine.javaavance.phineloops.model.PieceProperties;
 
