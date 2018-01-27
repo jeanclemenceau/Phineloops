@@ -1,72 +1,75 @@
-#Betty BISMUTH & Jean CLEMENCEAU
+#Phineloops project
 
-To compile:
+##Betty BISMUTH & Jean CLEMENCEAU
+
+###M1 MIAGe Université Paris-Dauphine - Advanced Java Course
+
+* To compile:
 
 mvn compile
 mvn package
 
 
 
-To execute:
+* To execute:
 
-1) with the graphical user interface:
+1. with the graphical user interface:
 
 java -jar target/phineloops-1.0-jar-with-dependencies. jar
 
 
-2) without graphical user interface:
+2. without graphical user interface:
 
-a) to generate a grid 
+    * to generate a grid 
     java -jar target/phineloops-1.0-jar-with-dependencies. jar --generate wxh --output file
 or
     java -jar target/phineloops-1.0-jar-with-dependencies. jar -g wxh -o file
 with w the grid width, h the grid height and file the output file name
 
 
-(b) to verify a grid 
+    * to verify a grid 
     java -jar target/phineloops-1.0-jar-with-dependencies. jar --check file
 or
     java -jar target/phineloops-1.0-jar-with-dependencies. jar -c file
 with file the name of the file containing the grid to be tested
 
-c) to solve a grid
+    * to solve a grid
     java -jar target/phineloops-1.0-jar-with-dependencies. jar --solve file --output filesolved
 or
     java -jar target/phineloops-1.0-jar-with-dependencies. jar -s file -o filesolved
 with file the name of the file containing the grid to solve and filesolved the name of the file that will store the resolved grid
 
-Translated with www.DeepL.com/Translator
+________________________________________________________________________________________________________________________________________
 
-Pour compiler :
+
+* Pour compiler :
 
 mvn compile
 mvn package
 
-________________________________________________________________________________________________________________________________________
+* Pour exécuter :
 
-Pour exécuter :
-
-1) avec l'interface graphique :
+1. avec l'interface graphique :
 
 java -jar target/phineloops-1.0-jar-with-dependencies.jar
 
 
-2) sans interface graphique :
+2. sans interface graphique :
 
-a) pour générer une grille 
+    * pour générer une grille 
     java -jar target/phineloops-1.0-jar-with-dependencies.jar --generate wxh --output file
 ou
     java -jar target/phineloops-1.0-jar-with-dependencies.jar -g wxh -o file
 avec w la largeur de la grille, h la hauteur de la grille et file le nom du fichier de sortie
 
 
-b) pour vérifier une grille 
+    * pour vérifier une grille 
     java -jar target/phineloops-1.0-jar-with-dependencies.jar --check file
 ou
     java -jar target/phineloops-1.0-jar-with-dependencies.jar -c file
 avec file le nom du fichier contenant la grille à tester
 
-c) pour résoudre une grille
+    * pour résoudre une grille
     java -jar target/phineloops-1.0-jar-with-dependencies.jar --solve file --output filesolved
 ou
     java -jar target/phineloops-1.0-jar-with-dependencies.jar -s file -o filesolved
