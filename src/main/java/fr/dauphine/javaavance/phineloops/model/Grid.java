@@ -18,22 +18,22 @@ import java.util.HashSet;
  *@see Grid
  */
 public class Grid {
-	
+
 	/**
 	 * The width of the grid
 	 */
 	private int width;
-	
+
 	/**
 	 * The height of the grid
 	 */
 	private int height;
-	
+
 	/**
-	 * The pieces composing the grid, double dimension array first index is abscissa and second index ordinate 
+	 * The pieces composing the grid, double dimension array first index is abscissa and second index ordinate
 	 */
 	private Piece[][] pieces;
-	
+
 	/**
 	 * The list of the fixed pieces of the grid
 	 */
@@ -269,7 +269,7 @@ public class Grid {
 	 * @param p a piece to test its orientation
 	 * @param s pieces already visited by the solver
 	 * @return true if the piece can stay in this orientation or false if it can't
-	 * 
+	 *
 	 * @see Piece
 	 */
 	public boolean isAllowedOrientation(Piece p, List<Piece> s) {
@@ -293,6 +293,45 @@ public class Grid {
 		}
 		return true;
 	}
+
+	/**
+	 * Color a piece of the grid
+	 * @param Piece p the piece to color
+	 * @param int   c the color
+	 * @see Piece
+	 */
+	public void colorPiece(Piece p, int c){
+		Piece[] neighbours = getPieceNeighbours(p);
+		int[] links = PieceProperties.getLinksOnCardinalPoints(p.getNum(), p.getOrientation());
+		if(p.getNum()!=0){
+			p.setColor(c);
+			int[] neighbourLinks;
+			for(int k=0; k<neighbours.length; k++){
+				if(neighbours[k]!=null){
+					neighbourLinks = PieceProperties.getLinksOnCardinalPoints(neighbours[k].getNum(), neighbours[k].getOrientation());
+					if(links[k]!=0 && links[k]==neighbourLinks[(k+2)%4] && neighbours[k].getColor()== 0) colorPiece(neighbours[k],c);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Give all the pieces a color that shows in which
+	 * connected component the piece is
+	 * @return the number of connected components on the grid
+	 */
+	public int colorGrid(){
+		int c = 0;
+		for(int i = 0; i < height; i++)
+			for(int j = 0; j < width; j++) {
+				if(pieces[j][i].getColor() == 0 && pieces[j][i].getNum()!=0){
+					c++;
+					colorPiece(pieces[j][i],c);
+				}
+			}
+		return c;
+	}
+
 
 	/***
 	 * Prints the grid in Unicode

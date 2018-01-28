@@ -58,14 +58,18 @@ public class Main {
             height = Integer.parseInt(gridformat[1]);
             if(! cmd.hasOption("o")) throw new ParseException("Missing mandatory --output argument.");
             outputFile = cmd.getOptionValue( "o" );
-            Grid grid = Generator.generateGrid(width, height);
+
+            // generate grid and store it to outputFile...
+            Grid grid;
+            if(! cmd.hasOption("x")) grid = Generator.generate(width, height);
+            // else grid = Generator.generate(width, height);
+            else grid = Generator.generateGridWithNbcc(width, height, Integer.parseInt(cmd.getOptionValue("x")));
             grid.print();
             new MainDisplay(grid);
             graphicDisplay=true;
             grid.store(outputFile);
             System.out.println("finished");
-            // generate grid and store it to outputFile...
-            //...
+
         }
         else if( cmd.hasOption( "s" ) ) {
             System.out.println("Running phineloops solver.");
@@ -106,7 +110,7 @@ public class Main {
         }
         else {
         	graphicDisplay = true;
-        	new MainDisplay(Generator.generateGrid(6, 6));
+        	new MainDisplay(Generator.generate(6, 6));
             //throw new ParseException("You must specify at least one of the following options: -generate -check -solve ");
         }
         } catch (ParseException e) {
