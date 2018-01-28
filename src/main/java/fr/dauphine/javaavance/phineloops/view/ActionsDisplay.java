@@ -41,7 +41,7 @@ public class ActionsDisplay extends JPanel{
 			}
 		});
 		setBackground(Color.LIGHT_GRAY);
-		setPreferredSize(new Dimension(250, 300));
+		setPreferredSize(new Dimension(270, 350));
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		add(Box.createRigidArea(new Dimension(0,50)));

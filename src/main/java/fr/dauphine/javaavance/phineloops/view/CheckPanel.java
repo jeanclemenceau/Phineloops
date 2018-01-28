@@ -24,7 +24,7 @@ public class CheckPanel extends JPanel {
 	 * A label for displaying wether the current grid is solved or not
 	 * @see JLabel
 	 */
-	private final JLabel solvedInfo = new JLabel("");
+	private final JLabel solvedInfo = new JLabel("                                     ");
 	
 	/**
 	 * The current grid displayed on the graphic interface

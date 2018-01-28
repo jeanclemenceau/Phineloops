@@ -35,12 +35,18 @@ public class GeneratePanel extends JPanel{
 	 * @see JTextField
 	 */
 	private final JTextField heightField = new JTextField();
+	
+	/**
+	 * Text input field for the height of desired grid to generate
+	 * @see JTextField
+	 */
+	private final JTextField ccField = new JTextField();
 
 	/**
 	 * A label for displaying error messages
 	 * @see JLabel
 	 */
-	private final JLabel errorWarning = new JLabel("");
+	private final JLabel errorWarning = new JLabel("                                        ");
 
 	/**
 	 * Constructor of the generate panel
@@ -52,17 +58,22 @@ public class GeneratePanel extends JPanel{
 	public GeneratePanel() {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		setBackground(Color.LIGHT_GRAY);
-
+		
 		widthField.setText("  w  ");
 		heightField.setText("  h  ");
-
+		ccField.setText("  nb  ");
+		
 		JPanel inputPanel = new JPanel();
 		inputPanel.setBackground(Color.LIGHT_GRAY);
 		inputPanel.add(widthField);
 		inputPanel.add(new JLabel("x"));
 		inputPanel.add(heightField);
-
-		errorWarning.setForeground(Color.red);
+		
+		JPanel inputNbccPanel = new JPanel();
+		inputNbccPanel.setBackground(Color.LIGHT_GRAY);
+		inputNbccPanel.add(new JLabel("(components : "));
+		inputNbccPanel.add(ccField);
+		inputNbccPanel.add(new JLabel(")"));
 
 		JButton generateButton = new JButton("Generate");
 		generateButton.setBackground(Color.white);
@@ -70,16 +81,21 @@ public class GeneratePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-					new MainDisplay(Generator.generate(Integer.parseInt(widthField.getText().trim()), Integer.parseInt(heightField.getText().trim())));
+					if((ccField.getText().trim().matches("^[0-9]*$")))
+						new MainDisplay(Generator.generateGridWithNbcc(Integer.parseInt(widthField.getText().trim()), Integer.parseInt(heightField.getText().trim()), Integer.parseInt(ccField.getText().trim())));
+					else
+						new MainDisplay(Generator.generate(Integer.parseInt(widthField.getText().trim()), Integer.parseInt(heightField.getText().trim())));	
 					((JFrame) SwingUtilities.getRoot((Component) e.getSource())).dispose();
 				}
 				catch(Exception ex) {
+					errorWarning.setForeground(Color.red);
 					errorWarning.setText("Only numbers please");
 				}
 			}
 		});
 
 		add(inputPanel);
+		add(inputNbccPanel);
 		add(generateButton);
 		add(errorWarning);
 	}

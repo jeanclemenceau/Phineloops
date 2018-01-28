@@ -38,6 +38,7 @@ public class Main {
         options.addOption("t", "threads", true, "Maximum number of solver threads. (Use only with --solve.)");
         options.addOption("x", "nbcc", true, "Maximum number of connected components. (Use only with --generate.)");
         options.addOption("ch", "choice", true, "Chose the piece to test with the method indicated in <arg>. (Use only with --solve.)");
+        options.addOption("v", "visualize", false, "Graphic display of the grid");
         options.addOption("h", "help", false, "Display this help");
 
 
@@ -51,6 +52,7 @@ public class Main {
         }
 
     try{
+    	if( cmd.hasOption( "v" ) ) graphicDisplay=true;
         if( cmd.hasOption( "g" ) ) {
             System.out.println("Running phineloops generator.");
             String[] gridformat = cmd.getOptionValue( "g" ).split("x");
@@ -62,38 +64,39 @@ public class Main {
             // generate grid and store it to outputFile...
             Grid grid;
             if(! cmd.hasOption("x")) grid = Generator.generate(width, height);
-            // else grid = Generator.generate(width, height);
             else grid = Generator.generateGridWithNbcc(width, height, Integer.parseInt(cmd.getOptionValue("x")));
-            grid.print();
-            new MainDisplay(grid);
-            graphicDisplay=true;
+            
+            if(graphicDisplay) new MainDisplay(grid);
+            else grid.print();
+            
             grid.store(outputFile);
             System.out.println("finished");
-
         }
         else if( cmd.hasOption( "s" ) ) {
             System.out.println("Running phineloops solver.");
             inputFile = cmd.getOptionValue( "s" );
             if(! cmd.hasOption("o")) throw new ParseException("Missing mandatory --output argument.");
             outputFile = cmd.getOptionValue( "o" );
-            if(! cmd.hasOption("ch")) choice = 0;
+            
+            if(! cmd.hasOption("ch")) choice = 1;
             else choice = Integer.parseInt(cmd.getOptionValue("ch"));
+            
             boolean solved = false;
 
             // load grid from inputFile, solve it and store result to outputFile...
             try {
-      				Grid grid = new Grid(inputFile);
-              grid.print();
-
-              // random choice of a piece to start the solver with then left to right
-              if(choice == 0) solved = Solver.solveRandom(grid);
-              if(choice == 1) solved = Solver.solveFix(grid);
-              System.out.println("SOLVED: " + solved);
-      				grid.print();
-      				grid.store(outputFile);
-      			} catch (Exception e) {
-      				e.printStackTrace();
-      			}
+            	Grid grid = new Grid(inputFile);
+	            // random choice of a piece to start the solver with then left to right
+	            if(choice == 0) solved = Solver.solveRandom(grid);
+	            if(choice == 1) solved = Solver.solveFix(grid);
+	            System.out.println("SOLVED: " + solved);
+	            if(graphicDisplay) new MainDisplay(grid);
+	            else grid.print();
+      			grid.store(outputFile);
+      		} 
+            catch (Exception e) {
+      			e.printStackTrace();
+      		}
         }
 
         else if( cmd.hasOption( "c" )) {
@@ -102,16 +105,14 @@ public class Main {
             // load grid from inputFile and check if it is solved...
             try{
               Grid g = new Grid(inputFile);
-              //g.print();
               System.out.println("SOLVED: " + Checker.check(g));
             }catch(Exception e){
               e.printStackTrace();
             }
         }
         else {
-        	graphicDisplay = true;
-        	new MainDisplay(Generator.generate(6, 6));
-            //throw new ParseException("You must specify at least one of the following options: -generate -check -solve ");
+        	if(graphicDisplay) new MainDisplay(Generator.generate(6, 6));
+        	else throw new ParseException("You must specify at least one of the following options: -visualize -generate -check -solve ");
         }
         } catch (ParseException e) {
         // TODO Auto-generated catch block

@@ -5,7 +5,6 @@ import java.util.Set;
 
 import fr.dauphine.javaavance.phineloops.model.Grid;
 import fr.dauphine.javaavance.phineloops.model.Piece;
-import fr.dauphine.javaavance.phineloops.model.PieceProperties;
 
 
 /**
