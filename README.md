@@ -23,7 +23,7 @@ All the commands take place at the root of the project.
 
 ```java -jar target/phineloops-1.0-jar-with-dependencies. jar --visualize ```
 
-    *--visualize* can be remplaced by *-v* : this non mandatory option can also be used with generation and solving commands.
+   *--visualize* can be remplaced by *-v* : this non mandatory option can also be used with generation and solving commands.
 
 2. Without graphical user interface:
 
