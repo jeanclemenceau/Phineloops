@@ -4,11 +4,16 @@
 
 ### M1 MIAGE Université Paris-Dauphine - Advanced Java Course
 
-This project was made using Java programming language and Apache Maven software project management.
+This project was made using Java programming language and Apache Maven software project management. 
+You must have installed on your device a JRE (Jave Runtime Environment) and Maven in order to run the following commands.
+
+All the commands take place at the root of the project.
 
 * To compile:
 
 ```mvn compile```
+
+* To create a java archive (.jar):
     
 ```mvn package```
 
@@ -54,20 +59,26 @@ This project was made using Java programming language and Apache Maven software 
 
 ________________________________________________________________________________________________________________________________________
 
+Ce projet a été fait en Java et avec le programme de gestion de logiciel Maven (Apache)
+Il est nécessaire d'avoir un JRE et Maven d'installer sur son appareil pour exécuter les commandes suivantes.
 
-* Pour compiler :
+Toutes les commandes suivantes se font à la racine du projet.
+
+* Pour compiler:
 
 ```mvn compile```
 
+* Pour créer une archive java:
+
 ```mvn package```
 
-* Pour exécuter :
+* Pour exécuter:
 
-1. Avec interface graphique :
+1. Avec interface graphique:
 
 ```java -jar target/phineloops-1.0-jar-with-dependencies.jar```
 
-2. Sans interface graphique :
+2. Sans interface graphique:
 
     * Pour générer une grille 
     
