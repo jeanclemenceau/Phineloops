@@ -65,6 +65,7 @@ public class Main {
             Grid grid;
             if(! cmd.hasOption("x")) grid = Generator.generate(width, height);
             else grid = Generator.generateGridWithNbcc(width, height, Integer.parseInt(cmd.getOptionValue("x")));
+
             
             if(graphicDisplay) new MainDisplay(grid);
             else grid.print();
@@ -120,6 +121,8 @@ public class Main {
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp( "phineloops", options );
             System.exit(1); // exit with error
+    }catch (IllegalArgumentException e) {
+    	System.err.println("Error argument : " + e.getMessage());
     }
         if(!graphicDisplay) System.exit(0); // exit with success
     }

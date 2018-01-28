@@ -87,9 +87,13 @@ public class GeneratePanel extends JPanel{
 						new MainDisplay(Generator.generate(Integer.parseInt(widthField.getText().trim()), Integer.parseInt(heightField.getText().trim())));	
 					((JFrame) SwingUtilities.getRoot((Component) e.getSource())).dispose();
 				}
-				catch(Exception ex) {
+				catch(NumberFormatException ex) {
 					errorWarning.setForeground(Color.red);
 					errorWarning.setText("Only numbers please");
+				}
+				catch(IllegalArgumentException ex) {
+					errorWarning.setForeground(Color.red);
+					errorWarning.setText("Less compon. please");
 				}
 			}
 		});

@@ -68,7 +68,9 @@ public class Generator {
 	 * @see Grid
 	 * @see Piece
 	 */
-	public static Grid generateGridWithNbcc(int width, int height, int nbcc){
+	public static Grid generateGridWithNbcc(int width, int height, int nbcc) throws IllegalArgumentException{
+		// no more nbcc than (width*height)/3 we could use (width*height)/2 but we want to avoid long computing time
+		if(nbcc > (width*height)/3) throw new IllegalArgumentException("nbcc : Number of connected components is too high for the grid's size");
 		Grid g;
 		int nb;
 		do{
