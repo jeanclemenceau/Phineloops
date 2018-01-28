@@ -28,7 +28,7 @@ public class Generator {
 	 * @see Random
 	 * @see Set
 	 */
-	public static Grid generateGrid(int width, int height) {
+	private static Grid generateGrid(int width, int height) {
 		Grid g = new Grid(width, height);
 		Piece[][] pieces = g.getPieces();
 		Random randomizer = new Random();
