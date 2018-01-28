@@ -75,7 +75,7 @@ public class Generator {
 			g = generateGrid(width, height);
 			nb = g.colorGrid();
 		}while(nb<nbcc);
-		if(nb == nbcc) return g;
+		if(nb == nbcc) {g.shuffle(); return g;}
 		Piece[][] pieces = g.getPieces();
 		for(int i = 0; i < height; i++)
 			for(int j = 0; j < width; j++) {
