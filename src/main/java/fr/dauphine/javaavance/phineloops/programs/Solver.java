@@ -81,7 +81,7 @@ public class Solver {
 	 * @param  Piece p             the current piece
 	 * @return       the next piece
 	 */
-	public static Piece getNextRight(Grid g, Piece p) {
+	private static Piece getNextRight(Grid g, Piece p) {
 		int x = p.getX(), y = p.getY();
 		if(p.getX()==g.getWidth()-1) {
 			x = 0;
@@ -172,7 +172,7 @@ public class Solver {
 	 * @param  Deque<Piece> pfixed        stack of the fixed pieces
 	 * @return             a stack of neighbours
 	 */
-	public static Deque<Piece> getNextCurrentNeighbours(Grid g, Deque<Piece> pfixed){
+	private static Deque<Piece> getNextCurrentNeighbours(Grid g, Deque<Piece> pfixed){
 		Piece nextFixed = pfixed.pop();
 		Piece[] cNeighbours = g.getPieceNeighbours(nextFixed);
 		Deque<Piece> currentNeighbours = new ArrayDeque<Piece>();
