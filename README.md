@@ -49,13 +49,13 @@ All the commands take place at the root of the project.
 
     * To solve a grid
     
-    ```java -jar target/phineloops-1.0-jar-with-dependencies. jar --solve file --output filesolved```
+    ```java -jar target/phineloops-1.0-jar-with-dependencies. jar --solve file --output filesolved [ --choice choice ]```
     
       or
 
-    ```java -jar target/phineloops-1.0-jar-with-dependencies. jar -s file -o filesolved```
+    ```java -jar target/phineloops-1.0-jar-with-dependencies. jar -s file -o filesolved [ -ch choice ]```
     
-     with *file* the name of the file containing the grid to solve and *filesolved* the name of the file that will store the resolved grid
+     with *file* the name of the file containing the grid to solve and *filesolved* the name of the file that will store the resolved grid and *choice* a non mandatory option which represents the choice of the solving method (0 or 1) 0 for solving using random piece choice and 1 for solving using fixed pieces first, by default the choice is 1.
 
 ________________________________________________________________________________________________________________________________________
 
@@ -103,10 +103,10 @@ Toutes les commandes suivantes se font à la racine du projet.
 
     * Pour résoudre une grille
     
-    ```java -jar target/phineloops-1.0-jar-with-dependencies.jar --solve file --output filesolved```
+    ```java -jar target/phineloops-1.0-jar-with-dependencies.jar --solve file --output filesolved [ --choice choice ]```
     
    ou
    
-    ```java -jar target/phineloops-1.0-jar-with-dependencies.jar -s file -o filesolved```
+    ```java -jar target/phineloops-1.0-jar-with-dependencies.jar -s file -o filesolved [ -ch choice ]```
     
-   avec *file* le nom du fichier contenant la grille à résoudre et *filesolved* le nom du fichier qui stockera la grille résolue
+   avec *file* le nom du fichier contenant la grille à résoudre et *filesolved* le nom du fichier qui stockera la grille résolue et *choice* une valeur optionnelle qui représente le choix de la méthode de résolution (0 ou 1) 0 pour résoudre en utilisant le choix aléatoire de pièce et 1 pour résoudre en prenant d'abord les pièces fixées, par défaut le choix est 1.
