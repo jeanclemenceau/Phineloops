@@ -60,7 +60,7 @@ All the commands take place at the root of the project.
 ________________________________________________________________________________________________________________________________________
 
 Ce projet a été fait en Java et avec le programme de gestion de logiciel Maven (Apache)
-Il est nécessaire d'avoir un JRE et Maven d'installer sur son appareil pour exécuter les commandes suivantes.
+Il est nécessaire d'avoir un JRE et Maven d'installés sur son appareil pour exécuter les commandes suivantes.
 
 Toutes les commandes suivantes se font à la racine du projet.
 
