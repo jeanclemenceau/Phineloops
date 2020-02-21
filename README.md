@@ -5,30 +5,30 @@
 ### M1 MIAGE Université Paris-Dauphine - Advanced Java Course
 
 This project was made using Java programming language and Apache Maven software project management.
-An user documentation, and a developper documentation can be found in the doc/ folder, also, a *javadoc* can be found in javadoc/ folder
+A user documentation and a developper documentation can be found in the doc/ folder. Also, a *javadoc* can be found in javadoc/ folder
 You must have installed on your device a JRE (Jave Runtime Environment) and Maven in order to run the following commands.
 
-All the commands take place at the root of the project.
+All the commands are run at the root of the project.
 
-* To compile:
+* Compile:
 
 ```mvn compile```
 
-* To create a java archive (.jar):
+* Create a java archive (.jar):
 
 ```mvn package```
 
-* To execute:
+* Execute:
 
-1. With graphical user interface:
+1. GUI mode:
 
 ```java -jar target/phineloops-1.0-jar-with-dependencies. jar --visualize ```
 
    *--visualize* can be remplaced by *-v* : this non mandatory option can also be used with generation and solving commands.
 
-2. Without graphical user interface:
+2. Terminal mode:
 
-     * To generate a grid
+     * Generate a grid
 
       ```java -jar target/phineloops-1.0-jar-with-dependencies. jar --generate wxh --output file [--nbcc, -x nb] [--visualize, -v]```
 
@@ -39,7 +39,7 @@ All the commands take place at the root of the project.
     with *w* the grid width, *h* the grid height and *file* the output file name. *nb* the number of connected components if option *--nbcc* is specified.
 
 
-    * To verify a grid
+    * Verify a grid
 
     ```java -jar target/phineloops-1.0-jar-with-dependencies. jar --check file```
 
@@ -49,7 +49,7 @@ All the commands take place at the root of the project.
 
     with *file* the name of the file containing the grid to be tested
 
-    * To solve a grid
+    * Solve a grid
 
     ```java -jar target/phineloops-1.0-jar-with-dependencies. jar --solve file --output filesolved [--choice, -ch choice] [--visualize, -v]```
 
